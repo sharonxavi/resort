@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neythal — Beach Resort &amp; Spa on the East Coast Road, Chennai</title>
+<meta name="description" content="Neythal is a coastal resort and spa on the Coromandel shore, twenty minutes south of Chennai. Villas with private pools, a geothermal-inspired bath house, and three restaurants by the sea.">
+<meta name="theme-color" content="#1E3B3D">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neythal — Beach Resort &amp; Spa, Chennai">
+<meta property="og:description" content="A coastal retreat on the Coromandel. Villas, bath house, and three restaurants by the sea.">
+<meta property="og:image" content="assets/infinity-pool.jpg">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231E3B3D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23FBF9F5' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════════════════════════════ -->
+<header class="hdr" id="hdr">
+  <div class="hdr__inner">
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span>
+    </button>
+
+    <a class="brand" href="#top" aria-label="Neythal — home">
+      <span class="brand__mark" data-resort-name>Neythal</span>
+      <span class="brand__sub">East Coast Road · Chennai</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#stays">Stays</a>
+      <a href="#wellness">Wellness</a>
+      <a href="#dining">Dining</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+
+    <div class="hdr__actions">
+      <a class="hdr__tel" href="tel:+914400000000">+91 44 0000 0000</a>
+      <a class="btn btn--solid btn--sm" href="#booking">Book now</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer" id="drawer" hidden>
+  <nav class="drawer__nav" aria-label="Mobile">
+    <a href="#stays">Stays</a>
+    <a href="#wellness">Wellness</a>
+    <a href="#dining">Dining</a>
+    <a href="#experiences">Experiences</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="drawer__foot">
+    <a class="btn btn--solid" href="#booking">Check availability</a>
+    <a class="drawer__tel" href="tel:+914400000000">+91 44 0000 0000</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <video class="hero__media" id="heroVideo"
+         autoplay muted loop playsinline preload="metadata"
+         poster="assets/infinity-pool.jpg">
+    <source src="assets/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <p class="eyebrow eyebrow--light">Coromandel Coast · Tamil Nadu</p>
+    <h1 class="hero__title">Where the sea<br><em>keeps the time</em></h1>
+    <p class="hero__lede">Twelve acres of palm and salt air, twenty minutes south of the city.
+      A resort built around water — and the slowness it asks for.</p>
+    <div class="hero__cta">
+      <a class="btn btn--light" href="#booking">Check availability</a>
+      <a class="link link--light" href="#welcome">Discover the resort</a>
+    </div>
+  </div>
+
+  <button class="hero__sound" id="soundBtn" aria-label="Unmute video" aria-pressed="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="cross" d="M17 9.5l5 5m0-5l-5 5"/></svg>
+  </button>
+
+  <a class="hero__scroll" href="#welcome" aria-label="Scroll to content">
+    <span class="hero__scrollLine" aria-hidden="true"></span>
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     BOOKING BAR  →  hands off to the external engine (see js/main.js)
+     ══════════════════════════════════════════════════════════════ -->
+<section class="booking" id="booking" aria-label="Check availability">
+  <div class="booking__shell">
+
+    <div class="booking__tabs" role="tablist" aria-label="Stay type">
+      <button class="booking__tab is-active" role="tab" aria-selected="true"  data-stay="overnight">Overnight</button>
+      <button class="booking__tab"           role="tab" aria-selected="false" data-stay="dayuse">Day use</button>
+    </div>
+
+    <form class="booking__form" id="bookingForm" novalidate>
+
+      <div class="field" data-field="in">
+        <label for="checkin">Check in</label>
+        <input type="date" id="checkin" name="checkin" required>
+      </div>
+
+      <div class="field" data-field="out">
+        <label for="checkout">Check out</label>
+        <input type="date" id="checkout" name="checkout" required>
+      </div>
+
+      <div class="field field--guests" data-field="guests">
+        <label for="guestsBtn">Rooms &amp; guests</label>
+        <button type="button" class="guests__trigger" id="guestsBtn" aria-expanded="false" aria-controls="guestsPop">
+          <span id="guestsLabel">1 room · 2 adults</span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <div class="guests__pop" id="guestsPop" hidden>
+          <div class="stepper" data-count="rooms" data-min="1" data-max="6">
+            <div><span class="stepper__name">Rooms</span></div>
+            <div class="stepper__ctrl">
+              <button type="button" data-step="-1" aria-label="Fewer rooms">–</button>
+              <output>1</output>
+              <button type="button" data-step="1" aria-label="More rooms">+</button>
+            </div>
+          </div>
+          <div class="stepper" data-count="adults" data-min="1" data-max="12">
+            <div><span class="stepper__name">Adults</span><span class="stepper__hint">13+ years</span></div>
+            <div class="stepper__ctrl">
+              <button type="button" data-step="-1" aria-label="Fewer adults">–</button>
+              <output>2</output>
+              <button type="button" data-step="1" aria-label="More adults">+</button>
+            </div>
+          </div>
+          <div class="stepper" data-count="children" data-min="0" data-max="8">
+            <div><span class="stepper__name">Children</span><span class="stepper__hint">0–12 years</span></div>
+            <div class="stepper__ctrl">
+              <button type="button" data-step="-1" aria-label="Fewer children">–</button>
+              <output>0</output>
+              <button type="button" data-step="1" aria-label="More children">+</button>
+            </div>
+          </div>
+          <button type="button" class="guests__done" data-close-guests>Done</button>
+        </div>
+      </div>
+
+      <div class="field field--promo" data-field="promo">
+        <label for="promo">Promo code</label>
+        <input type="text" id="promo" name="promo" placeholder="Optional" autocomplete="off">
+      </div>
+
+      <button type="submit" class="btn btn--solid booking__submit">Check availability</button>
+    </form>
+
+    <p class="booking__note">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M20 6L9 17l-5-5"/></svg>
+      Best available rate when you book direct · from <strong>₹15,500</strong> per night
+    </p>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     WELCOME
+     ══════════════════════════════════════════════════════════════ -->
+<section class="welcome" id="welcome">
+  <div class="wrap welcome__grid">
+
+    <div class="welcome__text reveal">
+      <p class="eyebrow">The resort</p>
+      <h2 class="h-display">A quiet stretch of the<br>Coromandel, kept as it was</h2>
+      <p>Neythal takes its name from the old Tamil word for the seashore — the landscape of salt
+        pans, screwpine and blue lilies that has defined this coast for two thousand years. We built
+        into it rather than over it: low villas set among existing palms, stone paths that follow the
+        dunes, and a bath house fed by warm mineral water.</p>
+      <p>Everything here is within a five-minute walk of the water. Nothing here is in a hurry.</p>
+      <a class="link" href="#stays">Explore the villas</a>
+    </div>
+
+    <div class="welcome__media reveal">
+      <img class="welcome__imgA" src="assets/lobby-palms.jpg" alt="The open-air lobby, framed by mature palms" loading="lazy" width="1600" height="1067">
+      <img class="welcome__imgB" src="assets/gardens-stone-paths.jpg" alt="Stone paths winding through the resort gardens" loading="lazy" width="1600" height="1067">
+    </div>
+
+  </div>
+
+  <div class="wrap stats reveal">
+    <div class="stat"><span class="stat__n" data-count-to="12">0</span><span class="stat__l">Acres by the sea</span></div>
+    <div class="stat"><span class="stat__n" data-count-to="46">0</span><span class="stat__l">Villas &amp; suites</span></div>
+    <div class="stat"><span class="stat__n" data-count-to="300" data-suffix=" m">0</span><span class="stat__l">Private shoreline</span></div>
+    <div class="stat"><span class="stat__n" data-count-to="3">0</span><span class="stat__l">Restaurants &amp; bars</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     STAYS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="section stays" id="stays">
+  <div class="wrap">
+    <header class="section__head reveal">
+      <p class="eyebrow">Accommodation</p>
+      <h2 class="h-display">Forty-six ways to<br>wake up to the water</h2>
+      <p class="section__lede">Every villa opens to either the garden or the sea. All of them have an
+        outdoor shower, a day bed, and no television unless you ask for one.</p>
+    </header>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card__media">
+          <img src="assets/villa-private-pool.jpg" alt="Garden villa with its own private plunge pool" loading="lazy" width="1600" height="1067">
+          <span class="card__tag">Most booked</span>
+        </div>
+        <div class="card__body">
+          <h3>Garden Villa</h3>
+          <p class="card__meta">65 m² · 2 guests · Garden view · Private plunge pool</p>
+          <p class="card__desc">A walled garden, a plunge pool shaded by frangipani, and a bed that
+            faces the morning light.</p>
+          <div class="card__foot">
+            <p class="price"><span class="price__from">From</span> ₹15,500 <span class="price__unit">/ night</span></p>
+            <a class="btn btn--outline btn--sm" href="#booking" data-book="garden-villa">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__media">
+          <img src="assets/villa-bedroom-ocean.jpg" alt="Ocean view villa bedroom looking out to the Bay of Bengal" loading="lazy" width="1600" height="1067">
+        </div>
+        <div class="card__body">
+          <h3>Ocean Villa</h3>
+          <p class="card__meta">80 m² · 2 guests · Sea view · Outdoor shower</p>
+          <p class="card__desc">First line to the Bay of Bengal. You will hear the water before you
+            see it, and you will hear it all night.</p>
+          <div class="card__foot">
+            <p class="price"><span class="price__from">From</span> ₹22,000 <span class="price__unit">/ night</span></p>
+            <a class="btn btn--outline btn--sm" href="#booking" data-book="ocean-villa">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__media">
+          <img src="assets/villa-balcony-view.jpg" alt="Balcony suite overlooking the coastline" loading="lazy" width="1600" height="1067">
+        </div>
+        <div class="card__body">
+          <h3>Balcony Suite</h3>
+          <p class="card__meta">110 m² · 3 guests · Sea view · Upper level</p>
+          <p class="card__desc">A raised terrace above the palm line, wide enough to eat on, quiet
+            enough to work from.</p>
+          <div class="card__foot">
+            <p class="price"><span class="price__from">From</span> ₹28,500 <span class="price__unit">/ night</span></p>
+            <a class="btn btn--outline btn--sm" href="#booking" data-book="balcony-suite">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__media">
+          <img src="assets/stone-shower.jpg" alt="Stone outdoor shower at the pool residence" loading="lazy" width="1600" height="1067">
+        </div>
+        <div class="card__body">
+          <h3>Pool Residence</h3>
+          <p class="card__meta">180 m² · 4 guests · Beachfront · Two bedrooms</p>
+          <p class="card__desc">Two bedrooms, a lap pool cut from local stone, and a gate that opens
+            straight onto the sand.</p>
+          <div class="card__foot">
+            <p class="price"><span class="price__from">From</span> ₹42,000 <span class="price__unit">/ night</span></p>
+            <a class="btn btn--outline btn--sm" href="#booking" data-book="pool-residence">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     WELLNESS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="wellness" id="wellness">
+
+  <div class="band">
+    <img class="band__img" src="assets/spa-terrace-ocean.jpg" alt="Spa terrace overlooking the ocean at dusk" loading="lazy" width="1600" height="1067">
+    <div class="band__scrim" aria-hidden="true"></div>
+    <div class="band__content reveal">
+      <p class="eyebrow eyebrow--light">The bath house</p>
+      <h2 class="h-display h-display--light">Water first.<br>Everything else after.</h2>
+      <p class="band__lede">Warm mineral water, drawn on site and held at 38°C, in a bath house of
+        stone and open sky. Two hours here does what a week elsewhere cannot.</p>
+      <a class="btn btn--light" href="#booking">Reserve a treatment</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="quad">
+      <figure class="quad__item reveal">
+        <img src="assets/thermal-bath-house.jpg" alt="Indoor thermal bath house" loading="lazy" width="1600" height="1067">
+        <figcaption><h3>The Thermal Hall</h3><p>Mineral pools, 38°C, open from six.</p></figcaption>
+      </figure>
+      <figure class="quad__item reveal">
+        <img src="assets/stone-hot-tub.jpg" alt="Steaming stone hot tub outdoors" loading="lazy" width="1600" height="1067">
+        <figcaption><h3>Stone Tubs</h3><p>Four private tubs, cut into the dune.</p></figcaption>
+      </figure>
+      <figure class="quad__item reveal">
+        <img src="assets/spa-treatment-room.jpg" alt="Spa treatment room" loading="lazy" width="1600" height="1067">
+        <figcaption><h3>Treatments</h3><p>Siddha oils, abhyanga, deep tissue.</p></figcaption>
+      </figure>
+      <figure class="quad__item reveal">
+        <img src="assets/spa-lounge.jpg" alt="Spa relaxation lounge" loading="lazy" width="1600" height="1067">
+        <figcaption><h3>The Lounge</h3><p>Where you are meant to do nothing.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     DINING
+     ══════════════════════════════════════════════════════════════ -->
+<section class="section dining" id="dining">
+  <div class="wrap">
+    <header class="section__head reveal">
+      <p class="eyebrow">Dining</p>
+      <h2 class="h-display">Caught that morning,<br>eaten that evening</h2>
+      <p class="section__lede">Three rooms, one supply chain — the boats at Kovalam, the garden
+        behind the kitchen, and whatever the coast gives up that week.</p>
+    </header>
+
+    <div class="dine">
+
+      <article class="dine__item reveal">
+        <div class="dine__media">
+          <img src="assets/terrace-restaurant.jpg" alt="Open-air terrace restaurant by the sea" loading="lazy" width="1600" height="1067">
+        </div>
+        <div class="dine__body">
+          <p class="eyebrow">All-day dining</p>
+          <h3>Uppu</h3>
+          <p>An open terrace a few steps above the tideline. Chettinad at lunch, a shorter coastal
+            menu at night, and breakfast until whenever you get there.</p>
+          <p class="dine__meta">7:00 – 23:00 · Open air · Reservations for dinner</p>
+        </div>
+      </article>
+
+      <article class="dine__item dine__item--flip reveal">
+        <div class="dine__media">
+          <img src="assets/sunset-bar.jpg" alt="Outdoor resort bar at sunset" loading="lazy" width="1600" height="1067">
+        </div>
+        <div class="dine__body">
+          <p class="eyebrow">Bar</p>
+          <h3>Alaigal</h3>
+          <p>Built facing west, for the one hour a day it was designed for. Toddy-based cocktails,
+            South Indian arrack, and a short list of things to eat with your hands.</p>
+          <p class="dine__meta">16:00 – 01:00 · Live sets Friday &amp; Saturday</p>
+        </div>
+      </article>
+
+      <article class="dine__item reveal">
+        <div class="dine__media">
+          <img src="assets/wine-cellar.jpg" alt="Wine tasting cellar interior" loading="lazy" width="1600" height="1067">
+        </div>
+        <div class="dine__body">
+          <p class="eyebrow">Private dining</p>
+          <h3>The Cellar</h3>
+          <p>Fourteen seats below ground, the only cool room on the property. Tasting menus on
+            Thursdays, and yours entirely on request.</p>
+          <p class="dine__meta">By reservation · Seats 14 · Sommelier-led</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     EXPERIENCES
+     ══════════════════════════════════════════════════════════════ -->
+<section class="section experiences" id="experiences">
+  <div class="wrap">
+    <header class="section__head section__head--row reveal">
+      <div>
+        <p class="eyebrow">Experiences</p>
+        <h2 class="h-display">Days, if you want them</h2>
+      </div>
+      <div class="rail__nav">
+        <button class="rail__btn" data-rail="prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="rail__btn" data-rail="next" aria-label="Next">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <div class="rail" id="rail">
+    <article class="rail__item">
+      <img src="assets/yoga-pavilion.jpg" alt="Yoga pavilion" loading="lazy" width="1600" height="1067">
+      <h3>Dawn yoga</h3><p>6:15, in the open pavilion. Complimentary.</p>
+    </article>
+    <article class="rail__item">
+      <img src="assets/path-to-beach.jpg" alt="Stone pathway leading to the beach" loading="lazy" width="1600" height="1067">
+      <h3>Shore walk</h3><p>Two kilometres north to the fishing village.</p>
+    </article>
+    <article class="rail__item">
+      <img src="assets/fire-pit.jpg" alt="Seating around a fire pit" loading="lazy" width="1600" height="1067">
+      <h3>Fire pit</h3><p>Lit at dusk. Storytellers on Saturdays.</p>
+    </article>
+    <article class="rail__item">
+      <img src="assets/tennis-court.jpg" alt="Tennis court" loading="lazy" width="1600" height="1067">
+      <h3>Tennis</h3><p>Floodlit until ten. Coaching on request.</p>
+    </article>
+    <article class="rail__item">
+      <img src="assets/infinity-pool.jpg" alt="Infinity pool" loading="lazy" width="1600" height="1067">
+      <h3>The long pool</h3><p>Forty metres, unheated, always empty at seven.</p>
+    </article>
+    <article class="rail__item">
+      <img src="assets/gardens-stone-paths.jpg" alt="Resort gardens" loading="lazy" width="1600" height="1067">
+      <h3>Garden walk</h3><p>With the head gardener, Tuesdays and Fridays.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     GALLERY
+     ══════════════════════════════════════════════════════════════ -->
+<section class="section gallery" id="gallery">
+  <div class="wrap">
+    <header class="section__head reveal">
+      <p class="eyebrow">Gallery</p>
+      <h2 class="h-display">The place itself</h2>
+    </header>
+
+    <div class="grid" id="galleryGrid">
+      <button class="grid__i grid__i--tall reveal" data-src="assets/infinity-pool.jpg" data-cap="The forty-metre pool at first light">
+        <img src="assets/infinity-pool.jpg" alt="Infinity pool at the resort" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i reveal" data-src="assets/spa-terrace-ocean.jpg" data-cap="Spa terrace, facing the Bay of Bengal">
+        <img src="assets/spa-terrace-ocean.jpg" alt="Spa terrace overlooking the ocean" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i reveal" data-src="assets/villa-private-pool.jpg" data-cap="A garden villa and its plunge pool">
+        <img src="assets/villa-private-pool.jpg" alt="Villa with private pool" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i grid__i--wide reveal" data-src="assets/terrace-restaurant.jpg" data-cap="Uppu, laid for dinner">
+        <img src="assets/terrace-restaurant.jpg" alt="Terrace restaurant by the sea" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i reveal" data-src="assets/thermal-bath-house.jpg" data-cap="The thermal hall">
+        <img src="assets/thermal-bath-house.jpg" alt="Indoor thermal bath house" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i reveal" data-src="assets/sunset-bar.jpg" data-cap="Alaigal, the west-facing bar">
+        <img src="assets/sunset-bar.jpg" alt="Outdoor bar at sunset" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i grid__i--tall reveal" data-src="assets/stone-hot-tub.jpg" data-cap="Stone tubs, cut into the dune">
+        <img src="assets/stone-hot-tub.jpg" alt="Stone hot tub steaming outdoors" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i reveal" data-src="assets/yoga-pavilion.jpg" data-cap="The pavilion, before six">
+        <img src="assets/yoga-pavilion.jpg" alt="Yoga pavilion" loading="lazy" width="1600" height="1067"></button>
+      <button class="grid__i reveal" data-src="assets/path-to-beach.jpg" data-cap="The path down to the sand">
+        <img src="assets/path-to-beach.jpg" alt="Stone pathway leading to the beach" loading="lazy" width="1600" height="1067"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TESTIMONIALS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="section quotes" aria-label="Guest reviews">
+  <div class="wrap quotes__inner">
+    <div class="quotes__stage" id="quotes">
+      <blockquote class="quote is-active">
+        <p>“We have stayed up and down this coast for fifteen years. This is the first place that
+          understood the point of it — nobody hurried us, and nobody performed at us.”</p>
+        <footer><cite>Meera R.</cite><span>Bengaluru · Ocean Villa</span></footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>“The bath house alone is worth the drive from the city. I went in at seven in the morning
+          and lost most of the day, which was entirely the intention.”</p>
+        <footer><cite>Daniel A.</cite><span>Singapore · Balcony Suite</span></footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>“Booked two nights for an anniversary and extended to four. The staff remembered how we
+          took our coffee by the second morning. Small thing. It isn't a small thing.”</p>
+        <footer><cite>Anitha &amp; Suresh</cite><span>Chennai · Pool Residence</span></footer>
+      </blockquote>
+    </div>
+    <div class="quotes__dots" id="quotesDots" role="tablist" aria-label="Choose review"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CLOSING CTA
+     ══════════════════════════════════════════════════════════════ -->
+<section class="cta">
+  <img class="cta__img" src="assets/villa-balcony-view.jpg" alt="View from a villa balcony over the coast" loading="lazy" width="1600" height="1067">
+  <div class="cta__scrim" aria-hidden="true"></div>
+  <div class="cta__content reveal">
+    <p class="eyebrow eyebrow--light">Stay with us</p>
+    <h2 class="h-display h-display--light">The drive is an hour.<br>The difference is longer.</h2>
+    <a class="btn btn--light" href="#booking">Check availability</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════ -->
+<footer class="foot" id="contact">
+  <div class="wrap foot__grid">
+
+    <div class="foot__brand">
+      <p class="foot__mark" data-resort-name>Neythal</p>
+      <p class="foot__tag">A coastal retreat on the Coromandel</p>
+      <address>
+        <!-- PLACEHOLDER ADDRESS — replace with the real one -->
+        No. 00, East Coast Road<br>
+        Kovalam, Chennai 603 112<br>
+        Tamil Nadu, India
+      </address>
+    </div>
+
+    <nav class="foot__col" aria-label="Explore">
+      <h4>Explore</h4>
+      <a href="#stays">Villas &amp; suites</a>
+      <a href="#wellness">The bath house</a>
+      <a href="#dining">Restaurants &amp; bars</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+
+    <nav class="foot__col" aria-label="Plan">
+      <h4>Plan</h4>
+      <a href="#booking">Check availability</a>
+      <a href="#booking">Offers</a>
+      <a href="#contact">Weddings &amp; events</a>
+      <a href="#contact">Getting here</a>
+      <a href="#contact">Frequently asked</a>
+    </nav>
+
+    <div class="foot__col">
+      <h4>Contact</h4>
+      <!-- PLACEHOLDER CONTACT — replace -->
+      <a href="tel:+914400000000">+91 44 0000 0000</a>
+      <a href="mailto:stay@example.com">stay@example.com</a>
+      <p class="foot__hours">Reservations 8:00 – 22:00 IST, daily</p>
+      <div class="foot__social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 8h-2a2 2 0 0 0-2 2v12M8 13h6"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.5A9 9 0 1 1 21 12z"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="wrap foot__bar">
+    <p>© <span id="year">2026</span> <span data-resort-name>Neythal</span>. All rights reserved.</p>
+    <nav class="foot__legal" aria-label="Legal">
+      <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cancellation policy</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb__close" data-lb="close" aria-label="Close">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb__nav lb__nav--prev" data-lb="prev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <figure class="lb__figure">
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb__nav lb__nav--next" data-lb="next" aria-label="Next image">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
