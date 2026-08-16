@@ -60,6 +60,16 @@ Search `index.html` for `PLACEHOLDER` — there are two blocks in the footer
 
 ---
 
+## Every time you change style.css or main.js
+
+Bump the `?v=` number on **both** tags in `index.html` — the stylesheet `<link>` in
+the head and the `<script>` at the bottom. They must match.
+
+GitHub Pages serves assets with roughly a ten-minute max-age. Without the bump, a
+returning visitor gets the new HTML with the old cached CSS and JS, which renders a
+half-broken page until their cache expires. Verified, not theoretical: it happened on
+the accordion deploy.
+
 ## Notes for whoever edits this next
 
 - **Palette** lives in `:root` at the top of `style.css`. Changing `--teal-800`

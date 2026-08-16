@@ -25,7 +25,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<!-- ?v= is a cache buster. GitHub Pages serves assets with a ~10 minute
+     max-age, so after a deploy a returning visitor can get new HTML with the
+     old CSS/JS and a half-broken page. BUMP THIS NUMBER whenever style.css or
+     main.js changes — it must match the one on the script tag at the bottom. -->
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -667,6 +671,6 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
