@@ -1,0 +1,12 @@
+# Staging site — placeholder branding and contact details.
+#
+# Crawling is deliberately ALLOWED here. The "noindex" lives in a meta tag in
+# index.html, and a crawler has to fetch the page to see it. Blocking with
+# "Disallow: /" would stop the crawl and therefore hide the noindex, which
+# lets the bare URL get indexed anyway — the opposite of what we want.
+#
+# When the real content goes live: delete the robots meta tag from index.html
+# and replace this file with a normal allow + sitemap.
+
+User-agent: *
+Allow: /

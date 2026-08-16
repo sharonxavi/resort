@@ -43,7 +43,17 @@ params: { checkin:'checkin', checkout:'checkout', adults:'adults', … }
 The "Reserve" button on each room card also passes that room's code through as
 `roomtype` — the codes are the `data-book` attributes in `index.html`.
 
-### 3. Contact details
+### 3. Let search engines in
+
+While this is a staging site, `index.html` carries
+`<meta name="robots" content="noindex, nofollow">`. Delete that line when the real
+content goes live, and replace `robots.txt` with a normal allow + sitemap.
+
+`robots.txt` deliberately **allows** crawling. A crawler has to fetch the page to
+see the `noindex`; `Disallow: /` would block the fetch and let the bare URL get
+indexed anyway.
+
+### 4. Contact details
 
 Search `index.html` for `PLACEHOLDER` — there are two blocks in the footer
 (address, phone/email). Also the two `tel:` links in the header and drawer.
