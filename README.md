@@ -89,6 +89,20 @@ the accordion deploy.
   there is no React and no build step. Tuning lives in the `OPT` object in `main.js`
   (`defaultIndex`, `expandRatio`, `tilt`, `parallax`, `gap`); everything else is CSS.
   Corner radius is deliberately 0 to match the rest of the site, not the original's 16px.
+- **The gallery** is a port of the React Bits `<CircularGallery />` (WebGL, via `ogl`).
+  `js/vendor/ogl.js` is vendored deliberately — no CDN at runtime. React is gone; the
+  rendering classes never needed it. Tuning lives in `OPTS` at the top of `js/gallery.js`.
+  - `idleWobble: 0` keeps the photos still. The original hardcodes `0.1`, which makes
+    them ripple non-stop; at 0 they only move while being dragged or scrolled.
+  - Wheel and pointer listeners are bound to the container, not `window` as the
+    original does — otherwise the gallery spins whenever you scroll anywhere on the page.
+  - Textures are shared per URL and downscaled to 1280px before upload. The original
+    would have made eighteen full-size textures from your nine photos.
+  - The mosaic grid is still in the page underneath as a fallback and only hides once
+    WebGL has actually started. Don't hide it in CSS — if the script fails the section
+    would be empty. The lightbox still works in that fallback path.
+  - Canvas images are invisible to screen readers and Google, so `#galleryAltList`
+    carries the same captions as text. Keep it in sync if you change the images.
 - **Copy is placeholder** — written to fit the layout's rhythm and line lengths.
   Replacing it with real copy of roughly the same length will not disturb anything.
 
