@@ -73,6 +73,12 @@ Search `index.html` for `PLACEHOLDER` — there are two blocks in the footer
   invisible click-blocker.
 - **`:not(.eyebrow)`** on `.welcome__text p` and `.dine__body p` is deliberate. A
   bare descendant `p` outranks `.eyebrow` and greys out the section labels.
+- **The Experiences accordion** is a dependency-free port of the React Bits
+  `<AccordionGallery />`. Same layout maths as the original — flex-grow solved so the
+  open panel takes `expandRatio` of the row — but CSS transitions replace GSAP, so
+  there is no React and no build step. Tuning lives in the `OPT` object in `main.js`
+  (`defaultIndex`, `expandRatio`, `tilt`, `parallax`, `gap`); everything else is CSS.
+  Corner radius is deliberately 0 to match the rest of the site, not the original's 16px.
 - **Copy is placeholder** — written to fit the layout's rhythm and line lengths.
   Replacing it with real copy of roughly the same length will not disturb anything.
 

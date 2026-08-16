@@ -303,33 +303,88 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
 /* ───────────────────────────────────────────────────────────────
-   ⑧  Experiences rail
+   ⑧  Experiences accordion gallery
+
+   Vanilla port of the React Bits <AccordionGallery />. Same layout maths as
+   the original; CSS transitions replace GSAP, so there is no dependency.
+   This sets only the per-index values inline (flex-grow, tilt, parallax);
+   grayscale, dimming and the caption reveal are driven by .ag-panel--active
+   in the stylesheet.
    ─────────────────────────────────────────────────────────────── */
 (() => {
-  const rail = $('#rail');
-  if (!rail) return;
-  const prev = $('[data-rail="prev"]'), next = $('[data-rail="next"]');
-  if (!prev || !next) return;
+  const root = $('#expGallery');
+  if (!root) return;
+  const panels = $$('.ag-panel', root);
+  if (!panels.length) return;
 
-  const step = () => {
-    const item = $('.rail__item', rail);
-    return item ? item.getBoundingClientRect().width + 28 : 320;
+  /* Equivalent to the component's props. */
+  const OPT = { defaultIndex: 2, expandRatio: 0.52, tilt: 6, parallax: 0.5, gap: 8 };
+
+  const count = panels.length;
+  const ratio = Math.min(Math.max(OPT.expandRatio, 0.2), 0.9);
+  /* Solve flex-grow so the open panel takes exactly `ratio` of the row:
+     grow / (grow + count - 1) === ratio */
+  const grow = count > 1 ? (ratio * (count - 1)) / (1 - ratio) : 1;
+
+  let active = Math.min(Math.max(OPT.defaultIndex, 0), count - 1);
+  let mediaSize = 420;
+  let stacked = false;
+
+  const layout = () => {
+    panels.forEach((panel, i) => {
+      const isActive = i === active;
+      panel.classList.toggle('ag-panel--active', isActive);
+      panel.setAttribute('aria-current', isActive ? 'true' : 'false');
+      panel.style.flexGrow = String(isActive ? grow : 1);
+
+      /* Collapsed panels tilt away from the open one; stacked view stays flat. */
+      const rot = isActive ? 0 : i < active ? OPT.tilt : -OPT.tilt;
+      panel.style.transform = stacked ? '' : `rotateY(${rot}deg)`;
+
+      /* The image is wider than its panel, so it can drift as widths change. */
+      const media = $('.ag-panel__media', panel);
+      if (media && !stacked) {
+        const drift = Math.max(-1.5, Math.min(1.5, active - i));
+        const shift = isActive ? 0 : drift * OPT.parallax * mediaSize * 0.06;
+        media.style.transform = `translate(calc(-50% + ${shift.toFixed(1)}px), -50%)`;
+      }
+    });
   };
-  const sync = () => {
-    prev.disabled = rail.scrollLeft < 8;
-    next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 8;
+
+  const measure = () => {
+    stacked = window.matchMedia('(max-width: 640px)').matches;
+    const rect = root.getBoundingClientRect();
+    const total = stacked ? rect.height : rect.width;
+    const usable = Math.max(total - OPT.gap * (count - 1), 120);
+    mediaSize = Math.max(140, usable * ratio * 1.22);
+    root.style.setProperty('--ag-media-size', `${Math.round(mediaSize)}px`);
+    layout();
   };
 
-  prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
-  next.addEventListener('click', () => rail.scrollBy({ left:  step(), behavior: 'smooth' }));
-  rail.addEventListener('scroll', sync, { passive: true });
-  window.addEventListener('resize', sync);
+  const setActive = i => { if (i !== active) { active = i; layout(); } };
 
-  /* Run once now, then again once images and webfonts have settled —
-     before layout completes clientWidth/scrollWidth are still 0. */
-  sync();
-  window.addEventListener('load', sync);
-  if (document.fonts) document.fonts.ready.then(sync);
+  const canHover = () => window.matchMedia('(hover: hover)').matches;
+
+  panels.forEach((panel, i) => {
+    panel.addEventListener('mouseenter', () => { if (canHover()) setActive(i); });
+    panel.addEventListener('click', () => setActive(i));
+    panel.addEventListener('focus', () => setActive(i));
+    panel.addEventListener('keydown', e => {
+      /* Set state explicitly rather than leaning on the focus handler to do it —
+         .focus() does not reliably fire a focus event in an unfocused document. */
+      const go = n => { e.preventDefault(); setActive(n); panels[n].focus(); };
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go((i + 1) % count);
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go((i - 1 + count) % count);
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(i); }
+    });
+  });
+
+  measure();
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(root);
+  else window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  if (document.fonts) document.fonts.ready.then(measure);
 })();
 
 /* ───────────────────────────────────────────────────────────────
