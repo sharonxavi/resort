@@ -1,5 +1,10 @@
 # Staging site — placeholder branding and contact details.
 #
+# NOTE: on a GitHub Pages *project* site the live URL is
+# sharonxavi.github.io/resort/, so this file is served at /resort/robots.txt.
+# Crawlers only read robots.txt at the domain root, so this file has no effect
+# there. The noindex meta tag in index.html is what actually does the work.
+#
 # Crawling is deliberately ALLOWED here. The "noindex" lives in a meta tag in
 # index.html, and a crawler has to fetch the page to see it. Blocking with
 # "Disallow: /" would stop the crawl and therefore hide the noindex, which
